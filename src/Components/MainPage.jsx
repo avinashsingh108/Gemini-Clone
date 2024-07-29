@@ -1,6 +1,5 @@
 import { useContext, useRef, useEffect, useState } from "react";
 import { IoMdSend } from "react-icons/io";
-import FancyText from "@carefully-coded/react-text-gradient";
 import { varContext } from "../Context/Context";
 import { SiGooglegemini } from "react-icons/si";
 import { IoSearchCircleSharp } from "react-icons/io5";
