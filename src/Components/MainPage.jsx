@@ -128,7 +128,8 @@ const MainPage = () => {
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key.includes("Next")) {
                           e.preventDefault();
-                          window.alert(e.key)
+                          console.log(e)
+                          setInput(e.keyCode)
                           handleName(enterName);
                         }
                       }}
