@@ -50,7 +50,11 @@ const MainPage = () => {
     localStorage.setItem("name", capitalize);
   };
   return (
-    <div className={`p-6 flex flex-col justify-between w-full ${!isMenuOpen ? 'pl-80' : 'pl-40'} h-screen dark:bg-black dark:text-white`}>
+    <div
+      className={`pt-6 px-6 flex flex-col justify-between w-full ${
+        !isMenuOpen ? "pl-80" : "pl-40"
+      } h-screen dark:bg-black dark:text-white`}
+    >
       <div className="flex flex-col gap-y-14 overflow-y-auto pb-10">
         <div className="sticky top-0 bg-white dark:bg-black flex justify-between text-3xl font-semibold">
           <h2 className="gradient-text">Gemini</h2>
@@ -102,18 +106,14 @@ const MainPage = () => {
           <>
             <div className="py-10 text-7xl flex flex-col">
               {name ? (
-                <h1
-                  className="font-semibold gradient-text"
-                >
-                  Hello, {name}
-                </h1>
+                <h1 className="font-semibold gradient-text">Hello, {name}</h1>
               ) : (
                 <div className="flex items-center ">
                   <div className="text-5xl rounded-xl dark:text-black ml-1 ">
                     <input
                       type="text"
                       value={enterName}
-                      placeholder="Enter your name here"
+                      placeholder="Enter your name"
                       onChange={(e) => setEnterName(e.target.value)}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") {
@@ -121,7 +121,7 @@ const MainPage = () => {
                         }
                       }}
                       maxLength={14}
-                      className="w-full rounded-xl ring-2 px-4 focus:ring outline-none dark:bg-zinc-900 ring-slate-400 text-slate-300 placeholder:text-slate-300"
+                      className="w-full rounded-xl ring-2 px-4 focus:ring outline-none dark:bg-zinc-900 ring-slate-400 text-slate-300 placeholder:text-4xl placeholder:text-slate-300"
                     />
                   </div>
                 </div>
@@ -165,6 +165,10 @@ const MainPage = () => {
           />
           <IoMdSend onClick={() => onSent(input)} />
         </div>
+        <p className="text-center w-[80%] py-1">
+          Gemini may display inaccurate info, including about people, so
+          double-check its responses.{" "}
+        </p>
       </div>
     </div>
   );
