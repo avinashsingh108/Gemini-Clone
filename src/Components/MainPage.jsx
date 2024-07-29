@@ -53,6 +53,13 @@ const MainPage = () => {
     setName(capitalize);
     localStorage.setItem("name", capitalize);
   };
+
+  const handleNameFnc = (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      handleName(enterName);
+    }
+  };
   return (
     <div
       className={`pt-6 px-6 flex flex-col justify-between w-full h-screen${
@@ -71,8 +78,9 @@ const MainPage = () => {
           <h2 className="gradient-text">Gemini</h2>
           {name && (
             <p
-            onClick={() => setShowChangeName(!showChangeName)}
-            className="relative flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl size-9 cursor-pointer">
+              onClick={() => setShowChangeName(!showChangeName)}
+              className="relative flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl size-9 cursor-pointer"
+            >
               {name.charAt(0).toUpperCase()}
               {showChangeName && !showResult && (
                 <span
@@ -119,17 +127,14 @@ const MainPage = () => {
                 <h1 className="font-semibold gradient-text">Hello, {name}</h1>
               ) : (
                 <div className="flex items-center ">
-                  <div className="text-5xl rounded-xl dark:text-black ml-1 ">
+                  <div className="text-5xl rounded-xl dark:text-black mx-2 ">
                     <input
                       type="text"
                       value={enterName}
                       placeholder="Enter your name"
                       onChange={(e) => setEnterName(e.target.value)}
                       onKeyDown={(e) => {
-                        if (e.key === "Enter") {
-                          e.preventDefault();
-                          handleName(enterName);
-                        }
+                        handleNameFnc(e);
                       }}
                       maxLength={14}
                       className="w-full rounded-xl ring-2 px-4 focus:ring outline-none dark:bg-zinc-900 ring-slate-400 text-slate-300 placeholder:text-4xl placeholder:text-slate-300"
