@@ -4,6 +4,7 @@ import { varContext } from "../Context/Context";
 import { SiGooglegemini } from "react-icons/si";
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { ThreeDots } from "react-loader-spinner";
+import { FaBars } from "react-icons/fa";
 import MarkdownRenderer from "./MarkDownRenderer";
 const MainPage = () => {
   const {
@@ -14,6 +15,9 @@ const MainPage = () => {
     loading,
     onSent,
     isMenuOpen,
+    setIsMenuOpen,
+    smallSidebar,
+    setSmallSidebar,
   } = useContext(varContext);
   const inputRef = useRef(null);
   const [customBoxNo, setCustomBoxNo] = useState(null);
@@ -52,16 +56,23 @@ const MainPage = () => {
   return (
     <div
       className={`pt-6 px-6 flex flex-col justify-between w-full ${
-        !isMenuOpen ? "pl-80" : "pl-40"
+        !isMenuOpen ? "lg:pl-80" : "pl-10 lg:pl-40"
       } h-screen dark:bg-black dark:text-white`}
     >
       <div className="flex flex-col gap-y-14 overflow-y-auto pb-10">
         <div className="sticky top-0 bg-white dark:bg-black flex justify-between text-3xl font-semibold">
+          <FaBars
+            onClick={() => setSmallSidebar(!smallSidebar)}
+            className="sm:hidden text-2xl"
+          />
           <h2 className="gradient-text">Gemini</h2>
           {name && (
             <p
-              onClick={() => setShowChangeName(!showChangeName)}
-              className="relative p-3 rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl h-fit cursor-pointer"
+              onClick={() => {
+                setSmallSidebar(!smallSidebar);
+                setIsMenuOpen(!isMenuOpen)
+              }}
+              className="relative flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl size-9 cursor-pointer"
             >
               {name.charAt(0).toUpperCase()}
               {showChangeName && !showResult && (
@@ -96,7 +107,7 @@ const MainPage = () => {
             ) : (
               <div className="flex items-start">
                 <SiGooglegemini className="text-2xl mx-2 flex-none text-blue-500" />
-                <div className="text-xl w-[80%]">
+                <div className="text-base sm:text-xl w-[80%]">
                   <MarkdownRenderer />
                 </div>
               </div>
@@ -104,7 +115,7 @@ const MainPage = () => {
           </div>
         ) : (
           <>
-            <div className="py-10 text-7xl flex flex-col">
+            <div className="py-10 text-5xl sm:text-7xl flex flex-col">
               {name ? (
                 <h1 className="font-semibold gradient-text">Hello, {name}</h1>
               ) : (
@@ -130,7 +141,7 @@ const MainPage = () => {
               <span className="text-slate-300">How can I help you today?</span>
             </div>
 
-            <div className="flex gap-x-6 justify-start ml-1">
+            <div className="flex gap-6 justify-start ml-1 flex-wrap">
               {customInput.map((text, index) => (
                 <div
                   key={index}
@@ -139,7 +150,7 @@ const MainPage = () => {
                     customBoxNo === index
                       ? "bg-blue-100 dark:bg-blue-500 dark:bg-opacity-30 bg-opacity-90"
                       : "bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700"
-                  } size-48 cursor-pointer rounded-xl p-4 text-xl`}
+                  } size-36 sm:size-44 lg:size-48 cursor-pointer rounded-xl p-4 text-base lg:text-xl`}
                 >
                   {text}{" "}
                 </div>
@@ -149,7 +160,7 @@ const MainPage = () => {
         )}
       </div>
       <div>
-        <div className="flex justify-between items-center text-2xl px-10 py-4 bg-slate-100 dark:bg-zinc-800 rounded-full w-[80%]">
+        <div className="flex justify-between items-center text-xl sm:text-2xl px-6 sm:px-10 py-2 sm:py-4 bg-slate-100 dark:bg-zinc-800 rounded-full lg:w-[80%]">
           <input
             type="text"
             ref={inputRef}
@@ -165,7 +176,7 @@ const MainPage = () => {
           />
           <IoMdSend onClick={() => onSent(input)} />
         </div>
-        <p className="text-center w-[80%] py-1">
+        <p className="text-center leading-4 lg:w-[80%] py-1">
           Gemini may display inaccurate info, including about people, so
           double-check its responses.{" "}
         </p>

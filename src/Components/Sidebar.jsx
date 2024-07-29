@@ -10,7 +10,6 @@ import { HiOutlineDotsVertical } from "react-icons/hi";
 import { varContext } from "../Context/Context";
 import { FaSquareXTwitter, FaSquareGithub } from "react-icons/fa6";
 import { IoLogoLinkedin } from "react-icons/io5";
-import "./style.css";
 const Sidebar = () => {
   const [openMenuIndex, setOpenMenuIndex] = useState(null);
   const [showContact, setShowContact] = useState(false);
@@ -28,6 +27,8 @@ const Sidebar = () => {
     recentPrompt,
     isMenuOpen,
     setIsMenuOpen,
+    smallSidebar,
+    setSmallSidebar
   } = useContext(varContext);
 
   useEffect(() => {
@@ -58,10 +59,12 @@ const Sidebar = () => {
     localStorage.removeItem("prompts");
   };
   return (
+    
     <div
       className={`bg-slate-100 dark:bg-zinc-800 h-screen dark:text-white ${
         isMenuOpen ? "w-80" : "w-20"
-      } p-6 flex flex-col gap-y-8 justify-between text-xl transition-width duration-300`}
+      } p-6 flex flex-col gap-y-8 justify-between text-xl transition-width duration-300
+       `}
     >
       <div className="flex flex-col gap-y-10">
         <div>
@@ -85,7 +88,7 @@ const Sidebar = () => {
         </div>
         <div className={`flex flex-col gap-y-2 ${isMenuOpen ? "" : "hidden"} `}>
           <h2 className="font-semibold text-2xl pl-2">Recent</h2>
-          <div className="overflow-y-auto h-80">
+          <div className="overflow-y-auto h-60 sm:h-80">
             {prevPrompt.map((item, index) => (
               <div
                 key={index}
@@ -166,7 +169,7 @@ const Sidebar = () => {
           <p className={`${isMenuOpen ? "" : "hidden"}`}>Contact</p>
         </div>
         {showContact && (
-          <div className="flex gap-x-6 text-2xl justify-center absolute top-28 mt-2 left-6 ">
+          <div className="flex gap-x-2 lg:gap-x-6 text-2xl justify-center absolute top-28 mt-2 left-1 lg:left-6 ">
             <IoLogoLinkedin
               onClick={() => handleClick(linkedinUrl)}
               className="hover:cursor-pointer transition transform ease-in-out duration-300 hover:scale-105"

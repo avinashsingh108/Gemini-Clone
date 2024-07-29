@@ -12,6 +12,7 @@ export const ContextProvider = ({ children }) => {
   const [resultData, setResultData] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(true);
+  const [smallSidebar, setSmallSidebar] = useState(false);
 
   useEffect(() => {
     const prefersDark = window.matchMedia(
@@ -62,7 +63,9 @@ export const ContextProvider = ({ children }) => {
     toggleMode, 
     darkMode,
     isMenuOpen, 
-    setIsMenuOpen
+    setIsMenuOpen, 
+    smallSidebar,
+    setSmallSidebar
   };
   return (
     <varContext.Provider value={contextValue}>{children}</varContext.Provider>
