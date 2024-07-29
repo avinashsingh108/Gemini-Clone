@@ -58,6 +58,7 @@ const MainPage = () => {
     if (e.key === "Enter") {
       e.preventDefault();
       handleName(enterName);
+      enterName.current.blur();
     }
   };
   return (
