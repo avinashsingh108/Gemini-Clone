@@ -1,0 +1,60 @@
+
+::-webkit-scrollbar {
+    width: 8px;  
+    height: 8px; 
+  }
+  
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px; 
+    border: 2px solid #f1f1f1;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+  
+  * {
+    scrollbar-width: thin; 
+    scrollbar-color: #888 #f1f1f1; 
+  }
+  
+  *::-webkit-scrollbar {
+    width: 8px; 
+    height: 8px; 
+  }
+  
+  *::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+  
+  *::-webkit-scrollbar-thumb {
+    background-color: #888; 
+    border-radius: 10px; 
+    border: 2px solid #f1f1f1; 
+  }
+  
+  @keyframes gradientBackground {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  
+  .gradient-text {
+    background: linear-gradient(270deg, #4E83EF, #A171C3, #D46677);
+    background-size: 600% 600%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradientBackground 5s ease infinite;
+  }
+  
