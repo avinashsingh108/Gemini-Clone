@@ -59,7 +59,7 @@ const Sidebar = () => {
   };
   return (
     <div
-      className={`bg-slate-100 dark:bg-zinc-900 h-screen dark:text-white ${
+      className={`bg-slate-100 dark:bg-zinc-800 h-screen dark:text-white ${
         isMenuOpen ? "w-80" : "w-20"
       } p-6 flex flex-col gap-y-8 justify-between text-xl transition-width duration-300`}
     >

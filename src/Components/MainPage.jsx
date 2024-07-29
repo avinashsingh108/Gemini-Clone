@@ -57,7 +57,7 @@ const MainPage = () => {
           {name && (
             <p
               onClick={() => setShowChangeName(!showChangeName)}
-              className="relative p-3 rounded-full bg-gradient-to-r from-blue-600 via-purple-600 text-white to-pink-600 leading-3 text-xl h-fit cursor-pointer"
+              className="relative p-3 rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl h-fit cursor-pointer"
             >
               {name.charAt(0).toUpperCase()}
               {showChangeName && !showResult && (
@@ -138,7 +138,7 @@ const MainPage = () => {
                   className={`${
                     customBoxNo === index
                       ? "bg-blue-100 dark:bg-blue-500 dark:bg-opacity-30 bg-opacity-90"
-                      : "bg-slate-100 dark:bg-zinc-900 hover:bg-slate-200 dark:hover:bg-zinc-800"
+                      : "bg-slate-100 dark:bg-zinc-800 hover:bg-slate-200 dark:hover:bg-zinc-700"
                   } size-48 cursor-pointer rounded-xl p-4 text-xl`}
                 >
                   {text}{" "}
@@ -149,12 +149,12 @@ const MainPage = () => {
         )}
       </div>
       <div>
-        <div className="flex justify-between items-center text-2xl px-10 py-4 bg-slate-100 dark:bg-zinc-900 rounded-full w-[80%]">
+        <div className="flex justify-between items-center text-2xl px-10 py-4 bg-slate-100 dark:bg-zinc-800 rounded-full w-[80%]">
           <input
             type="text"
             ref={inputRef}
             placeholder="Enter your prompt here"
-            className="outline-none bg-slate-100 dark:bg-zinc-900 w-full pr-4 "
+            className="outline-none bg-slate-100 dark:bg-zinc-800 w-full pr-4 "
             value={input}
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {
