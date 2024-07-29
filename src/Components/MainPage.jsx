@@ -55,25 +55,24 @@ const MainPage = () => {
   };
   return (
     <div
-      className={`pt-6 px-6 flex flex-col justify-between w-full ${
+      className={`pt-6 px-6 flex flex-col justify-between w-full h-screen${
         !isMenuOpen ? "lg:pl-80" : "pl-10 lg:pl-40"
       } h-screen dark:bg-black dark:text-white`}
     >
       <div className="flex flex-col gap-y-14 overflow-y-auto pb-10">
-        <div className="sticky top-0 bg-white dark:bg-black flex justify-between text-3xl font-semibold">
+        <div className="sticky top-0 sm:bg-white sm:dark:bg-black flex justify-between text-3xl font-semibold">
           <FaBars
-            onClick={() => setSmallSidebar(!smallSidebar)}
+            onClick={() => {
+              setSmallSidebar(!smallSidebar);
+              setIsMenuOpen(true);
+            }}
             className="sm:hidden text-2xl"
           />
           <h2 className="gradient-text">Gemini</h2>
           {name && (
             <p
-              onClick={() => {
-                setSmallSidebar(!smallSidebar);
-                setIsMenuOpen(!isMenuOpen)
-              }}
-              className="relative flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl size-9 cursor-pointer"
-            >
+            onClick={() => setShowChangeName(!showChangeName)}
+            className="relative flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl size-9 cursor-pointer">
               {name.charAt(0).toUpperCase()}
               {showChangeName && !showResult && (
                 <span

@@ -28,7 +28,7 @@ const Sidebar = () => {
     isMenuOpen,
     setIsMenuOpen,
     smallSidebar,
-    setSmallSidebar
+    setSmallSidebar,
   } = useContext(varContext);
 
   useEffect(() => {
@@ -59,11 +59,12 @@ const Sidebar = () => {
     localStorage.removeItem("prompts");
   };
   return (
-    
     <div
-      className={`bg-slate-100 dark:bg-zinc-800 h-screen dark:text-white ${
+      className={`fixed sm:static bg-slate-100 dark:bg-zinc-800 h-screen dark:text-white ${
+        smallSidebar ? "translate-x-0" : "-translate-x-full"
+      } ${
         isMenuOpen ? "w-80" : "w-20"
-      } p-6 flex flex-col gap-y-8 justify-between text-xl transition-width duration-300
+      } sm:translate-x-0 p-6 flex flex-col gap-y-8 justify-between text-xl transition-width duration-300
        `}
     >
       <div className="flex flex-col gap-y-10">
@@ -71,7 +72,7 @@ const Sidebar = () => {
           <FaBars
             title={!isMenuOpen && "Show menu"}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-2xl cursor-pointer pl-2"
+            className="text-2xl cursor-pointer pl-2 hidden sm:block"
           />
         </div>
         <div
