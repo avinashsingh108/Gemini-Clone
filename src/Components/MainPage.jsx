@@ -126,7 +126,7 @@ const MainPage = () => {
                       placeholder="Enter your name"
                       onChange={(e) => setEnterName(e.target.value)}
                       onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key.includes("Tab")) {
+                        if (e.key === "Enter" || e.key.includes("Next")) {
                           e.preventDefault();
                           window.alert(e.key)
                           handleName(enterName);
