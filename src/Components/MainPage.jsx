@@ -127,6 +127,7 @@ const MainPage = () => {
                       onChange={(e) => setEnterName(e.target.value)}
                       onKeyDown={(e) => {
                         if (e.key === "Enter") {
+                          e.preventDefault();
                           handleName(enterName);
                         }
                       }}
@@ -169,6 +170,7 @@ const MainPage = () => {
             onChange={(e) => setInput(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
+                e.preventDefault();
                 onSent(input);
               }
             }}
