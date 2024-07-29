@@ -128,6 +128,7 @@ const MainPage = () => {
                       onKeyDown={(e) => {
                         if (e.key === "Enter" || e.key.includes("Tab")) {
                           e.preventDefault();
+                          window.alert(e.key)
                           handleName(enterName);
                         }
                       }}
