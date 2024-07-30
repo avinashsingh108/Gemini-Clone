@@ -179,7 +179,7 @@ const MainPage = () => {
           />
           <IoMdSend onClick={() => onSent(input)} />
         </div>
-        <p className="text-center leading-4 lg:w-[80%] py-1">
+        <p className="text-center leading-4 lg:w-[80%] py-1 mb-4">
           Gemini may display inaccurate info, including about people, so
           double-check its responses.{" "}
         </p>
