@@ -126,14 +126,13 @@ const MainPage = () => {
                       placeholder="Enter your name"
                       onChange={(e) => setEnterName(e.target.value)}
                       onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key.includes("Next")) {
+                        if (e.key === "Enter" || e.key.includes("Tab") || e.key.includes("Next")) {
                           e.preventDefault();
-                          console.log(e)
-                          setInput(e.keyCode)
                           handleName(enterName);
                         }
                       }}
                       maxLength={14}
+                      enterKeyHint="go"
                       className="w-full rounded-xl ring-2 px-4 focus:ring outline-none dark:bg-zinc-900 ring-slate-400 text-slate-300 placeholder:text-4xl placeholder:text-slate-300"
                     />
                     
