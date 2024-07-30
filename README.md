@@ -30,13 +30,16 @@ Gemini Clone is a React-based application that mimics the functionalities of the
 1. Clone the repository:
    ```bash
     git clone https://github.com/avinashsingh108/gemini-clone.git
+
+2. Navigate to the project directory:
+   ```bash
     cd gemini
 
-2. Install the dependencies:
+3. Install the dependencies:
    ```bash
    npm install
 
-3. Start the development server:
+4. Start the development server:
     ```bash
     npm run dev
 
