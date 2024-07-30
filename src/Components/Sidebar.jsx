@@ -170,7 +170,7 @@ const Sidebar = () => {
           <p className={`${isMenuOpen ? "" : "hidden"}`}>Contact</p>
         </div>
         {showContact && (
-          <div className="flex gap-x-2 lg:gap-x-6 text-2xl justify-center absolute top-28 mt-2 left-1 lg:left-6 ">
+          <div className="flex gap-x-2 lg:gap-x-6 text-2xl justify-center absolute top-28 mt-2 left-6 lg:left-6 ">
             <IoLogoLinkedin
               onClick={() => handleClick(linkedinUrl)}
               className="hover:cursor-pointer transition transform ease-in-out duration-300 hover:scale-105"

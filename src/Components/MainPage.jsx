@@ -106,7 +106,7 @@ const MainPage = () => {
             ) : (
               <div className="flex items-start">
                 <SiGooglegemini className="text-2xl mx-2 flex-none text-blue-500" />
-                <div className="text-base sm:text-xl w-[80%] overflow-x-scroll ">
+                <div className="text-base sm:text-xl w-[80%] overflow-x-auto ">
                   <MarkdownRenderer />
                 </div>
               </div>
