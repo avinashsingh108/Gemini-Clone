@@ -63,7 +63,7 @@ const Sidebar = () => {
       className={`fixed sm:static bg-slate-100 dark:bg-zinc-800 h-screen dark:text-white ${
         smallSidebar ? "translate-x-0" : "-translate-x-full"
       } ${
-        isMenuOpen ? "w-80" : "w-20"
+        isMenuOpen ? "w-76" : "w-20"
       } sm:translate-x-0 p-6 flex flex-col gap-y-8 justify-between text-xl transition-width duration-300
        `}
     >
@@ -72,11 +72,11 @@ const Sidebar = () => {
           <FaBars
             title={!isMenuOpen && "Show menu"}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="text-2xl cursor-pointer pl-2 hidden sm:block"
+            className="text-2xl cursor-pointer pl-2 hidden sm:block "
           />
         </div>
         <div
-          className={`flex gap-x-2 bg-gray-300 dark:bg-black ${
+          className={`mt-12 sm:mt-0 flex gap-x-2 bg-gray-300 dark:bg-black ${
             isMenuOpen ? "px-4" : "px-2"
           } py-2 rounded-full justify-center items-center w-fit cursor-pointer`}
           onClick={() => {

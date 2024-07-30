@@ -59,8 +59,8 @@ const MainPage = () => {
         !isMenuOpen ? "lg:pl-80" : "pl-10 lg:pl-40"
       } h-screen dark:bg-black dark:text-white`}
     >
-      <div className="flex flex-col gap-y-14 overflow-y-auto pb-10">
-        <div className="sticky top-0 sm:bg-white sm:dark:bg-black flex justify-between text-3xl font-semibold">
+      <div className="flex flex-col sm:gap-y-8 lg:gap-y-14 overflow-y-auto pb-10">
+        <div className={`sticky top-0 ${(!smallSidebar || !isMenuOpen) && 'bg-white dark:bg-black'}  flex justify-between text-3xl font-semibold`}>
           <FaBars
             onClick={() => {
               setSmallSidebar(!smallSidebar);
@@ -72,7 +72,7 @@ const MainPage = () => {
           {name && (
             <p
             onClick={() => setShowChangeName(!showChangeName)}
-            className="relative flex items-center justify-center rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl size-9 cursor-pointer">
+            className="relative flex items-center justify-center mr-2 sm:mr-0 rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl size-9 cursor-pointer">
               {name.charAt(0).toUpperCase()}
               {showChangeName && !showResult && (
                 <span
@@ -106,7 +106,7 @@ const MainPage = () => {
             ) : (
               <div className="flex items-start">
                 <SiGooglegemini className="text-2xl mx-2 flex-none text-blue-500" />
-                <div className="text-base sm:text-xl w-[80%]">
+                <div className="text-base sm:text-xl w-[80%] overflow-x-scroll ">
                   <MarkdownRenderer />
                 </div>
               </div>
