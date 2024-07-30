@@ -4,7 +4,10 @@ import { varContext } from "../Context/Context";
 import { SiGooglegemini } from "react-icons/si";
 import { IoSearchCircleSharp } from "react-icons/io5";
 import { ThreeDots } from "react-loader-spinner";
-import { FaBars } from "react-icons/fa";
+import { FaBars, FaRegStopCircle } from "react-icons/fa";
+import { BsCopy } from "react-icons/bs";
+import { HiOutlineSpeakerWave } from "react-icons/hi2";
+import { IoIosCheckboxOutline } from "react-icons/io";
 import MarkdownRenderer from "./MarkDownRenderer";
 const MainPage = () => {
   const {
@@ -18,18 +21,37 @@ const MainPage = () => {
     setIsMenuOpen,
     smallSidebar,
     setSmallSidebar,
+    
   } = useContext(varContext);
+  const markdownRef = useRef(null);
   const inputRef = useRef(null);
   const [customBoxNo, setCustomBoxNo] = useState(null);
   const [name, setName] = useState(localStorage.getItem("name") || "");
   const [enterName, setEnterName] = useState("");
   const [showChangeName, setShowChangeName] = useState(false);
+  const [isReading, setIsReading] = useState(false);
+  const [isCopied, setIsCopied] = useState(false);
+
   const customInput = [
     "Walk me through the steps to apply for a new job",
     "How to implement a binary search algorithm in Python?",
     "Find the best attractions to visit in Tokyo and Seoul",
     "Create a product description for an innovative electric toothbrush",
   ];
+
+  const startReading = (text) => {
+    if ("speechSynthesis" in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      window.speechSynthesis.speak(utterance);
+      setIsReading(true);
+    } else {
+      window.alert("Speech Synthesis is not supported in this browser.");
+    }
+  };
+  const stopReading = () => {
+    window.speechSynthesis.cancel();
+    setIsReading(false);
+  };
 
   const handleCustomClick = (text, index) => {
     if (input.trim() === text) {
@@ -53,6 +75,18 @@ const MainPage = () => {
     setName(capitalize);
     localStorage.setItem("name", capitalize);
   };
+
+  const copyAnswer = () => {
+    if (markdownRef.current) {
+      const textToCopy = markdownRef.current.innerText;
+      navigator.clipboard.writeText(textToCopy);
+      setIsCopied(true);
+
+      setTimeout(() => {
+        setIsCopied(false);
+      }, 2000);
+    }
+  };
   return (
     <div
       className={`pt-6 px-6 flex flex-col justify-between w-full h-screen${
@@ -60,7 +94,11 @@ const MainPage = () => {
       } h-screen dark:bg-black dark:text-white`}
     >
       <div className="flex flex-col sm:gap-y-8 lg:gap-y-14 overflow-y-auto pb-10">
-        <div className={`sticky top-0 ${(!smallSidebar || !isMenuOpen) && 'bg-white dark:bg-black'}  flex justify-between text-3xl font-semibold`}>
+        <div
+          className={`sticky top-0 ${
+            (!smallSidebar || !isMenuOpen) && "bg-white dark:bg-black"
+          }  flex justify-between text-3xl font-semibold`}
+        >
           <FaBars
             onClick={() => {
               setSmallSidebar(!smallSidebar);
@@ -71,8 +109,9 @@ const MainPage = () => {
           <h2 className="gradient-text">Gemini</h2>
           {name && (
             <p
-            onClick={() => setShowChangeName(!showChangeName)}
-            className="relative flex items-center justify-center mr-2 sm:mr-0 rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl size-9 cursor-pointer">
+              onClick={() => setShowChangeName(!showChangeName)}
+              className="relative flex items-center justify-center mr-2 sm:mr-0 rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl size-9 cursor-pointer"
+            >
               {name.charAt(0).toUpperCase()}
               {showChangeName && !showResult && (
                 <span
@@ -106,8 +145,44 @@ const MainPage = () => {
             ) : (
               <div className="flex items-start">
                 <SiGooglegemini className="text-2xl mx-2 flex-none text-blue-500" />
-                <div className="text-base sm:text-xl w-[80%] overflow-x-auto ">
-                  <MarkdownRenderer />
+                <div className="space-y-2">
+                  <div
+                    ref={markdownRef}
+                    className="text-base sm:text-xl w-[80%] overflow-x-auto "
+                  >
+                    <MarkdownRenderer />
+                  </div>
+                  <div className="flex gap-x-4 items-center">
+                    {isCopied ? (
+                      <div className="flex flex-col relative">
+                        <IoIosCheckboxOutline />
+                        <p className="text-xs absolute top-6">Copied!</p>
+                      </div>
+                    ) : (
+                      <BsCopy
+                        title="Copy"
+                        className="cursor-pointer text-base"
+                        onClick={copyAnswer}
+                      />
+                    )}
+                    {isReading ? (
+                      <FaRegStopCircle
+                        title="Stop"
+                        className="cursor-pointer"
+                        onClick={stopReading}
+                      />
+                    ) : (
+                      <HiOutlineSpeakerWave
+                        title="Read"
+                        className="cursor-pointer"
+                        onClick={() => {
+                          if (markdownRef.current) {
+                            startReading(markdownRef.current.innerText);
+                          }
+                        }}
+                      />
+                    )}
+                  </div>
                 </div>
               </div>
             )}
@@ -126,7 +201,11 @@ const MainPage = () => {
                       placeholder="Enter your name"
                       onChange={(e) => setEnterName(e.target.value)}
                       onKeyDown={(e) => {
-                        if (e.key === "Enter" || e.key.includes("Tab") || e.key.includes("Next")) {
+                        if (
+                          e.key === "Enter" ||
+                          e.key.includes("Tab") ||
+                          e.key.includes("Next")
+                        ) {
                           e.preventDefault();
                           handleName(enterName);
                         }
@@ -135,7 +214,6 @@ const MainPage = () => {
                       enterKeyHint="go"
                       className="w-full rounded-xl ring-2 px-4 focus:ring outline-none dark:bg-zinc-900 ring-slate-400 text-slate-300 placeholder:text-4xl placeholder:text-slate-300"
                     />
-                    
                   </div>
                 </div>
               )}
