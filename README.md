@@ -7,9 +7,8 @@ Gemini Clone is a React-based application that mimics the functionalities of the
 ## Features
 
 - **Custom Prompt Suggestions**: A list of predefined custom inputs is provided for quick selection and inspiration.
-- **Interactive Input Field**: Users can type a prompt and press Enter to submit it or click the send icon.
 - **Recent Prompt Display**: The most recent prompt entered by the user is displayed for reference.
-- **Personalized Greetings with Persistent Storage**: Users can enter their name, which is stored in local storage for personalized greetings. The name persists across sessions and can be changed by clicking on the displayed name.
+- **Persistent Storage**: Users can enter their name, which is stored in local storage for personalized greetings. The name persists across sessions and can be changed by clicking the displayed name.
 - **Responsive Design**: The application is designed to work seamlessly on both desktop and mobile devices.
 - **Dark Mode Support**: The interface supports dark mode for a comfortable viewing experience in low-light conditions.
 - **Markdown Rendering**: Responses are displayed using a Markdown renderer for a clean and readable format.
@@ -31,7 +30,7 @@ Gemini Clone is a React-based application that mimics the functionalities of the
 1. Clone the repository:
    ```bash
     git clone https://github.com/avinashsingh108/gemini-clone.git
-   cd gemini
+    cd gemini
 
 2. Install the dependencies:
    ```bash
@@ -39,5 +38,5 @@ Gemini Clone is a React-based application that mimics the functionalities of the
 
 3. Start the development server:
     ```bash
-      npm run dev
+    npm run dev
 
