@@ -63,7 +63,7 @@ const Sidebar = () => {
       className={`fixed sm:static bg-slate-100 dark:bg-zinc-800 h-screen dark:text-white ${
         smallSidebar ? "translate-x-0" : "-translate-x-full"
       } ${
-        isMenuOpen ? "w-76" : "w-20"
+        isMenuOpen ? "w-80" : "w-20"
       } sm:translate-x-0 p-6 flex flex-col gap-y-8 justify-between text-xl transition-width duration-300
        `}
     >
