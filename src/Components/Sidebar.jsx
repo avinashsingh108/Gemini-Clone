@@ -90,7 +90,7 @@ const Sidebar = () => {
         <div className={`flex flex-col gap-y-2 ${isMenuOpen ? "" : "hidden"} `}>
           <h2 className="font-semibold text-2xl pl-2">Recent</h2>
           <div className="overflow-y-auto h-60 sm:h-80">
-            {prevPrompt.map((item, index) => (
+            {prevPrompt.slice().reverse().map((item, index) => (
               <div
                 key={index}
                 className="flex gap-4 items-center justify-between hover:bg-slate-200 dark:hover:bg-zinc-800 px-4 py-1 rounded-full cursor-pointer"

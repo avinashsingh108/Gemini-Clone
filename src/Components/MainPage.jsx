@@ -21,7 +21,6 @@ const MainPage = () => {
     setIsMenuOpen,
     smallSidebar,
     setSmallSidebar,
-    
   } = useContext(varContext);
   const markdownRef = useRef(null);
   const inputRef = useRef(null);
@@ -109,7 +108,9 @@ const MainPage = () => {
           <h2 className="gradient-text">Gemini</h2>
           {name && (
             <p
-              onClick={() => setShowChangeName(!showChangeName)}
+              onClick={() => {
+                showResult ? null : setShowChangeName(!showChangeName);
+              }}
               className="relative flex items-center justify-center mr-2 sm:mr-0 rounded-full bg-gradient-to-r from-blue-600 shadow-md text-white to-pink-600 leading-3 text-xl size-9 cursor-pointer"
             >
               {name.charAt(0).toUpperCase()}
@@ -148,7 +149,7 @@ const MainPage = () => {
                 <div className="space-y-2">
                   <div
                     ref={markdownRef}
-                    className="text-base sm:text-xl w-[80%] overflow-x-auto "
+                    className="text-base sm:text-xl w-[80%] overflow-x-auto"
                   >
                     <MarkdownRenderer />
                   </div>
